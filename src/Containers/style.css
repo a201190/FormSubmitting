@@ -1,0 +1,24 @@
+/*PersonalInfo*/
+.formStyle{
+    display: table;
+    margin: auto;
+    background: aliceblue;
+    padding: 100px;
+}
+.InputType{
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0px;
+    resize: vertical;
+}
+.error{
+  color:red;
+}
+/*Address*/
+.formStyleAdd{
+      display: table;
+      width: 60%;
+      margin: auto;
+      background: aliceblue;
+      padding: 100px;
+}
