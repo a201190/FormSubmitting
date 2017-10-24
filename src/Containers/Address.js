@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.css'
+import {Link} from 'react-router-dom';
 import {Field, reduxForm} from 'redux-form';
 import FieldComp from '../Components/FieldComp';
 import TextareaComp from '../Components/TextareaComp';
@@ -54,7 +55,7 @@ class Address extends React.Component{
         return(
             <div className="formStyleAdd">
               <h1 style={{textAlign:'center'}}>Address</h1>
-              <form  onSubmit={this.props.handleSubmit((values)=>{console.log(values)})}>
+              <form  onSubmit={this.props.handleSubmit(()=>this.props.onSurveySubmit())}>
                 <h3>Correspondence Address</h3>
                 <label>Street</label>
                 <Field component={TextareaComp} name='street'/>
@@ -62,7 +63,9 @@ class Address extends React.Component{
                 <label>Zipcode</label>
                 <Field component={numberComp} name='zipcode'/>
                 {this.PermanentAdd()}
-                <button>Next</button>
+                <button type="submit">
+                  <Link to="education">Next</Link>                
+                </button>
               </form>
               <span>if your permanent address same as Correspondence address
                 <input type="checkbox" onClick={this.toggle}/>
@@ -102,5 +105,6 @@ return error;
 }
 export default reduxForm({
   validate,
-  form:'Address'
+  form:'Address',
+  destroyOnUnmount:false
 })(Address);

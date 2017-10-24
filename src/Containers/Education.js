@@ -4,6 +4,7 @@ import {Field, reduxForm} from 'redux-form';
 import selectComp from '../Components/selectComp';
 import FieldComp from '../Components/FieldComp';
 import numberComp from '../Components/numberComp';
+import {Link} from 'react-router-dom';
 const REducationTyp = value => (value ? undefined : 'Please Provide Your Education Type');
 const REducation = value => (value ? undefined : 'Please Provide your Education')
 const RPercentage = value => (value ? undefined : 'Please Provide Your Percentage')
@@ -22,7 +23,7 @@ class Education extends React.Component{
     render(){
         return(
             <div>
-       <form className="formStyle" onSubmit={this.props.handleSubmit((values)=>{console.log(values)})}>
+       <form className="formStyle" onSubmit={this.props.handleSubmit(()=>this.props.onSurveySubmit())}>
                 {this.state.Education.map((Education, i, j, k)=>{
                   return  (
                   <div key={i}>
@@ -34,8 +35,10 @@ class Education extends React.Component{
                     <Field component={numberComp} validate={RPercentage} placeholder="Enter your Percentage" name={'percentage'+i}/>
                   </div>);
                 })}
-                <button type="submit">Next</button>
-              <button type="reset" onClick={((ev)=>{
+                <button type="submit">
+                  <Link to="experience">Next</Link>                
+                </button>
+              <button onClick={((ev)=>{
                 ev.preventDefault();
                 this.AddEducation() ;
               })} >Add Education</button>
@@ -45,5 +48,6 @@ class Education extends React.Component{
     }
 }
 export default reduxForm({
-  form:'Education'
+  form:'Education',
+  destroyOnUnmount:false
 })(Education);

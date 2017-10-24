@@ -23,7 +23,7 @@ AddProfession(ev){
     render(){
         return(
           <div>
-            <form className="formStyle" onSubmit={this.props.handleSubmit((values)=>{console.log(values)})}>
+            <form className="formStyle" onSubmit={this.props.handleSubmit(()=>this.props.onSurveySubmit())}>
               {this.state.data.map((data, i)=>{
                 return(
                   <div key={i}>
@@ -44,5 +44,6 @@ AddProfession(ev){
     }
 }
 export default reduxForm({
-  form:'Experience'
+  form:'Experience',
+  destroyOnUnmount:false
 })(Experience);

@@ -3,6 +3,7 @@ import './style.css';
 import {Field, reduxForm} from 'redux-form';
 import FieldComp from '../Components/FieldComp';
 import DateComp from '../Components/DateComp';
+import {Link} from 'react-router-dom'
 class PersonalInfo extends React.Component{
     constructor(props){
         super(props);
@@ -45,10 +46,10 @@ class PersonalInfo extends React.Component{
     render(){
         return(
             <div className="formStyle">
-                <form onSubmit={this.props.handleSubmit((values)=>console.log(values))}>
+                <form onSubmit={this.props.handleSubmit(()=>this.props.onSurveySubmit())}>
                     {this.renderPersonalInfo(this.ev)}
                     {this.dateRander(this.ev)}
-                    <button type="submmit">Next</button>
+                    <button type="submit"><Link to="address">Next</Link></button>
                 </form>
             </div>
         );
@@ -75,5 +76,6 @@ function validate(values) {
 }
 export default reduxForm({
     validate,
-    form:"PersonalInfo"
+    form:"PersonalInfo",
+    destroyOnUnmount:false
 })(PersonalInfo);
